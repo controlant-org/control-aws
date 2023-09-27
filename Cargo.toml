@@ -1,0 +1,21 @@
+[package]
+name = "control-aws"
+edition = "2021"
+version = "0.1.0"
+authors = ["LOU Xun <xun.lou@controlant.com>"]
+description = "Utilities for AWS controllers"
+
+[dependencies]
+thiserror = "1"
+tokio = { version = "1", features = ["full"] }
+tokio-stream = "0.1"
+
+# AWS
+aws-smithy-http = "*"
+http = "*"
+aws-types = "*"
+aws-config = "*"
+aws-sdk-organizations = "0.31"
+
+[dev-dependencies]
+anyhow = "1"
