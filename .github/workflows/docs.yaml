@@ -49,6 +49,7 @@ jobs:
           error_count: 2
       - name: Save cache
         uses: actions/cache@v3
+        if: always()
         with:
           path: |
             ~/.cargo/bin/
