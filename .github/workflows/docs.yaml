@@ -47,3 +47,16 @@ jobs:
         with:
           timeout: 60000
           error_count: 2
+      - name: Save cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
+            target/
+            /usr/share/rust/.rustup/
+          key: ${{ runner.os }}-cargo
