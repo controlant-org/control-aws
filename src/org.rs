@@ -1,3 +1,5 @@
+//! Utilities for discovering AWS accounts
+
 use aws_sdk_organizations::operation::list_accounts::ListAccountsError;
 use aws_sdk_organizations::operation::list_tags_for_resource::ListTagsForResourceError;
 use aws_smithy_http::{body::SdkBody, result::SdkError};
@@ -34,6 +36,24 @@ pub struct Account {
   pub domain: Option<String>,
 }
 
+/// Discover all accounts in the organization, also extract Controlant-specific tags.
+///
+/// To use this function the provided `SdkConfig` must have the following permissions:
+/// ```json
+/// {
+///   Version = "2012-10-17"
+///   Statement = [
+///     {
+///       Effect = "Allow"
+///       Action = [
+///         "organizations:ListAccounts",
+///         "organizations:ListTagsForResource",
+///       ]
+///       Resource = ["*"]
+///     },
+///   ]
+/// }
+/// ```
 pub async fn discover_accounts(config: SdkConfig) -> Result<Vec<Account>, OrgError> {
   let client = aws_sdk_organizations::Client::new(&config);
   let mut la_pages = client.list_accounts().into_paginator().send();
