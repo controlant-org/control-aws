@@ -7,7 +7,7 @@ description = "Utilities for AWS controllers"
 
 [dependencies]
 thiserror = "1"
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["rt"] }
 tokio-stream = "0.1"
 
 # AWS
@@ -19,3 +19,4 @@ aws-sdk-organizations = "0.31"
 
 [dev-dependencies]
 anyhow = "1"
+tokio = { version = "1", features = ["full"] }
