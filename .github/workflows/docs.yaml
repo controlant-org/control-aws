@@ -36,7 +36,7 @@ jobs:
           echo "<meta http-equiv=\"refresh\" content=\"0; url=control_aws\">" > target/doc/index.html
       - name: Fix permissions
         run: |
-          chmod -c -R +rX "_site/" | while read line; do
+          chmod -c -R +rX "target/doc/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Setup Pages
