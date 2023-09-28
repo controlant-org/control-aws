@@ -34,7 +34,11 @@ jobs:
       - run: |
           cargo doc --no-deps
           echo "<meta http-equiv=\"refresh\" content=\"0; url=control_aws\">" > target/doc/index.html
-          chmod 644 target/doc/index.html
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "_site/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
