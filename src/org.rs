@@ -24,7 +24,8 @@ pub enum OrgError {
 }
 
 /// An AWS account for Controlant
-#[derive(Debug)]
+#[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Account {
   /// The AWS account ID
   pub id: String,
