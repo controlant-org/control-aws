@@ -15,7 +15,7 @@ aws-smithy-http = "*"
 http = "*"
 aws-types = "*"
 aws-config = "*"
-aws-sdk-organizations = "0.31"
+aws-sdk-organizations = "0.33"
 
 # JSON
 serde = { version = "1", features = ["derive"], optional = true }
