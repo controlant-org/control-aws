@@ -2,19 +2,18 @@
 
 use aws_sdk_organizations::operation::list_accounts::ListAccountsError;
 use aws_sdk_organizations::operation::list_tags_for_resource::ListTagsForResourceError;
-use aws_smithy_http::{body::SdkBody, result::SdkError};
+use aws_smithy_runtime_api::client::orchestrator::HttpResponse;
+use aws_smithy_runtime_api::client::result::SdkError;
 use aws_types::SdkConfig;
-use http::Response;
 use thiserror::Error;
 use tokio::task::JoinSet;
-use tokio_stream::StreamExt;
 
 #[derive(Error, Debug)]
 pub enum OrgError {
   #[error("failed to list accounts")]
-  ListAccounts(#[from] SdkError<ListAccountsError, Response<SdkBody>>),
+  ListAccounts(#[from] SdkError<ListAccountsError, HttpResponse>),
   #[error("failed to list tags")]
-  ListTags(#[from] SdkError<ListTagsForResourceError, Response<SdkBody>>),
+  ListTags(#[from] SdkError<ListTagsForResourceError, HttpResponse>),
   #[error("failed to extract accounts")]
   BadAccounts,
   #[error("failed to extract account ID")]
@@ -92,10 +91,10 @@ async fn read_account(client: aws_sdk_organizations::Client, id: String) -> Resu
   let mut tier = None;
 
   for tag in tags {
-    match tag.key.as_deref() {
-      Some("catapult.controlant.com/environment") => environment = tag.value,
-      Some("catapult.controlant.com/domain") => domain = tag.value,
-      Some("catapult.controlant.com/tier") => tier = tag.value,
+    match tag.key.as_str() {
+      "catapult.controlant.com/environment" => environment = Some(tag.value),
+      "catapult.controlant.com/domain" => domain = Some(tag.value),
+      "catapult.controlant.com/tier" => tier = Some(tag.value),
       _ => (),
     };
   }
