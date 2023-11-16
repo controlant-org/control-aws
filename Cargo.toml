@@ -12,10 +12,10 @@ tokio-stream = "0.1"
 
 # AWS
 aws-sdk-organizations = "0.36"
-aws-smithy-types = "*"
-aws-smithy-runtime-api = "*"
-aws-types = "*"
-aws-config = "*"
+aws-smithy-types = "0.57"
+aws-smithy-runtime-api = "0.57"
+aws-types = "0.57"
+aws-config = "0.57"
 
 # JSON
 serde = { version = "1", features = ["derive"], optional = true }
