@@ -11,11 +11,11 @@ tokio = { version = "1", features = ["rt"] }
 tokio-stream = "0.1"
 
 # AWS
-aws-sdk-organizations = "0.36"
-aws-smithy-types = "0.57"
-aws-smithy-runtime-api = "0.57"
-aws-types = "0.57"
-aws-config = "0.57"
+aws-sdk-organizations = "0.37"
+aws-smithy-types = "0.100"
+aws-smithy-runtime-api = "0.100"
+aws-types = "0.100"
+aws-config = { version = "0.100", features = ["behavior-version-latest"] }
 
 # JSON
 serde = { version = "1", features = ["derive"], optional = true }
