@@ -10,9 +10,9 @@ use tokio::task::JoinSet;
 
 #[derive(Error, Debug)]
 pub enum OrgError {
-  #[error("failed to list accounts")]
+  #[error("failed to list accounts: {0}")]
   ListAccounts(#[from] SdkError<ListAccountsError, HttpResponse>),
-  #[error("failed to list tags")]
+  #[error("failed to list tags: {0}")]
   ListTags(#[from] SdkError<ListTagsForResourceError, HttpResponse>),
   #[error("failed to extract accounts")]
   BadAccounts,
