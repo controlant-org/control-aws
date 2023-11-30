@@ -1,10 +1,10 @@
 //! Utilities for discovering AWS accounts
 
+use aws_config::SdkConfig;
 use aws_sdk_organizations::operation::list_accounts::ListAccountsError;
 use aws_sdk_organizations::operation::list_tags_for_resource::ListTagsForResourceError;
 use aws_smithy_runtime_api::client::orchestrator::HttpResponse;
 use aws_smithy_runtime_api::client::result::SdkError;
-use aws_types::SdkConfig;
 use thiserror::Error;
 use tokio::task::JoinSet;
 

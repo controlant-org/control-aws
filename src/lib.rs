@@ -2,8 +2,7 @@
 
 pub mod org;
 
-use aws_config::{default_provider::region::DefaultRegionChain, SdkConfig};
-use aws_types::region::Region;
+use aws_config::{default_provider::region::DefaultRegionChain, Region, SdkConfig};
 
 /// Build `SdkConfig` by assuming a role and in the specified region
 pub async fn assume_role(role: impl Into<String>, region: Option<Region>) -> SdkConfig {
