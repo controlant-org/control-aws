@@ -1,0 +1,16 @@
+{
+  "Tags": [
+    {
+      "Key": "catapult.controlant.com/environment",
+      "Value": "development"
+    },
+    {
+      "Key": "catapult.controlant.com/domain",
+      "Value": "testing"
+    },
+    {
+      "Key": "catapult.controlant.com/tier",
+      "Value": "development"
+    }
+  ]
+}

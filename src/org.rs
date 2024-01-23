@@ -1,6 +1,5 @@
 //! Utilities for discovering AWS accounts
 
-use aws_config::SdkConfig;
 use aws_sdk_organizations::operation::list_accounts::ListAccountsError;
 use aws_sdk_organizations::operation::list_tags_for_resource::ListTagsForResourceError;
 use aws_smithy_runtime_api::client::orchestrator::HttpResponse;
@@ -23,7 +22,7 @@ pub enum OrgError {
 }
 
 /// An AWS account for Controlant
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Account {
   /// The AWS account ID
@@ -54,8 +53,8 @@ pub struct Account {
 ///   ]
 /// }
 /// ```
-pub async fn discover_accounts(config: SdkConfig) -> Result<Vec<Account>, OrgError> {
-  let client = aws_sdk_organizations::Client::new(&config);
+pub async fn discover_accounts(config: aws_sdk_organizations::Config) -> Result<Vec<Account>, OrgError> {
+  let client = aws_sdk_organizations::Client::from_conf(config);
   let mut la_pages = client.list_accounts().into_paginator().send();
 
   let mut ras = JoinSet::new();

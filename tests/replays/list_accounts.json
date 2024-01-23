@@ -1,0 +1,22 @@
+{
+  "Accounts": [
+    {
+      "Arn": "arn:aws:organizations::12345:account/o-1sxxp2zker/11111",
+      "Email": "account-11111@example.com",
+      "Id": "11111",
+      "JoinedMethod": "CREATED",
+      "JoinedTimestamp": 1.697644615406E9,
+      "Name": "development",
+      "Status": "ACTIVE"
+    },
+    {
+      "Arn": "arn:aws:organizations::12345:account/o-1sxxp2zker/22222",
+      "Email": "account-22222@example.com",
+      "Id": "22222",
+      "JoinedMethod": "CREATED",
+      "JoinedTimestamp": 1.697644567919E9,
+      "Name": "another",
+      "Status": "ACTIVE"
+    }
+  ]
+}
