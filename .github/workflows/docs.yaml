@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Cache build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/bin/
@@ -54,7 +54,7 @@ jobs:
           timeout: 60000
           error_count: 2
       - name: Save cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         if: always()
         with:
           path: |
