@@ -58,8 +58,11 @@ pub struct Account {
 ///   ]
 /// }
 /// ```
-pub async fn discover_accounts(config: aws_sdk_organizations::Config) -> Result<Vec<Account>, OrgError> {
-  let client = aws_sdk_organizations::Client::from_conf(config);
+pub async fn discover_accounts<C>(config: C) -> Result<Vec<Account>, OrgError>
+where
+  C: Into<aws_sdk_organizations::Config>,
+{
+  let client = aws_sdk_organizations::Client::from_conf(config.into());
   let mut la_pages = client.list_accounts().into_paginator().send();
 
   let mut ras = JoinSet::new();
