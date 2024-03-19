@@ -7,6 +7,11 @@ use aws_smithy_runtime_api::client::result::SdkError;
 use thiserror::Error;
 use tokio::task::JoinSet;
 
+/// Convert config struct
+pub fn config(c: &aws_config::SdkConfig) -> aws_sdk_organizations::Config {
+  c.into()
+}
+
 #[derive(Error, Debug)]
 pub enum OrgError {
   #[error("failed to list accounts: {0}")]
@@ -37,7 +42,7 @@ pub struct Account {
 
 /// Discover all accounts in the organization, also extract Controlant-specific tags.
 ///
-/// To use this function the provided `SdkConfig` must have the following permissions:
+/// To use this function the provided `config` must have the following permissions:
 /// ```json
 /// {
 ///   Version = "2012-10-17"
