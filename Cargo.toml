@@ -6,7 +6,7 @@ authors = ["LOU Xun <xun.lou@controlant.com>"]
 description = "Utilities for AWS controllers"
 
 [dependencies]
-thiserror = "1"
+thiserror = "2"
 tokio = { version = "1", features = ["rt"] }
 
 # AWS
